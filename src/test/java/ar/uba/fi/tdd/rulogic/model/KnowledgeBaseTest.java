@@ -70,6 +70,7 @@ public class KnowledgeBaseTest {
 		Assert.assertTrue(this.knowledgeBase.answer("padre(juan, pepe)."));
 
 	}
+<<<<<<< HEAD
         
         public void test_Padre_Mario_Pepe_Should_be_true() {
 
@@ -77,4 +78,26 @@ public class KnowledgeBaseTest {
 
 	}
                 
+=======
+  
+        
+        public void test_Padre_Mario_Pepe_Should_be_false() {
+
+		Assert.assertFalse(this.knowledgeBase.answer("padre(mario, pepe)."));
+
+	}
+        
+        public void test_Hijo_Pepe_Juan_Should_be_true() {
+
+		Assert.assertTrue(this.knowledgeBase.answer("hijo(pepe, juan)."));
+
+	}       
+        
+        
+        public void test_Hija_Maria_Roberto_Should_be_false() {
+
+		Assert.assertFalse(this.knowledgeBase.answer("hija(maria, roberto)."));
+
+	}
+>>>>>>> master
 }
