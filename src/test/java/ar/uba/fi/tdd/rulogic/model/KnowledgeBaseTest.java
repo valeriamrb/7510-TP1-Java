@@ -12,28 +12,31 @@ import org.mockito.InjectMocks;
 
 public class KnowledgeBaseTest {
 
-        private static List<String> db;
+        private static List<String> database;
         
 	@InjectMocks
 	private KnowledgeBase knowledgeBase;
 
         @BeforeClass
         public static void db() {
-            db = new ArrayList<String>();
-            db.add("varon(juan).");
-            db.add("varon(pepe).");
-            db.add("varon(hector).");
-            db.add("varon(roberto).");
-            db.add("varon(alejandro).");
-            db.add("mujer(maria).");
-            db.add("mujer(cecilia).");
-            db.add("padre(juan, pepe).");
-            db.add("padre(juan, pepa).");
-            db.add("padre(hector, maria).");
-            db.add("padre(roberto, alejandro).");
-            db.add("padre(roberto, cecilia).");
-            db.add("hijo(X, Y) :- varon(X), padre(Y, X).");
-            db.add("hija(X, Y) :- mujer(X), padre(Y, X).");
+            database = new ArrayList<String>();
+            database.add("varon(juan).");
+            database.add("varon(pepe).");
+            database.add("varon(hector).");
+            database.add("varon(roberto).");
+            database.add("varon(alejandro).");
+            database.add("mujer(maria).");
+            database.add("mujer(cecilia).");
+            database.add("padre(juan, pepe).");
+            database.add("padre(juan, pepa).");
+            database.add("padre(hector, maria).");
+            database.add("padre(roberto, alejandro).");
+            database.add("padre(roberto, cecilia).");
+            database.add("hijo(X, Y) :- varon(X), padre(Y, X).");
+            database.add("hija(X, Y) :- mujer(X), padre(Y, X).");
+            
+            KnowledgeBase kb = new KnowledgeBase();
+            //kb.parseDB(database.iterator());
         }
         
 	@Before

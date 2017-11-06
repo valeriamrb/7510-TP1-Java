@@ -15,12 +15,12 @@ public class Definicion {
     private String nombre;
     private String argumentos;
 
-    Definicion(String nombre, List<String> argumentos) {
+    Definicion(String nombre, String argumentos) {
         nombre = nombre;
         argumentos = argumentos;
     }
     
-    public Boolean comparar(Consulta consulta) {
+    public boolean comparar(Consulta consulta) {
       if(nombre == consulta.getNombre() && argumentos == consulta.getStringArgumentos()) {
           return true;
       }

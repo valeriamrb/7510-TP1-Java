@@ -5,6 +5,7 @@
  */
 package ar.uba.fi.tdd.rulogic.model;
 
+import static java.lang.String.join;
 import java.util.List;
 
 /**
@@ -13,7 +14,12 @@ import java.util.List;
  */
 public class Consulta {
     private String nombre;
-    private List<String> argumentos;
+    private String[] argumentos;
+
+    Consulta(String nombre, String[] argumentos) {
+        this.nombre = nombre;
+        this.argumentos = argumentos;
+    }
     
     public String getNombre() {
       return nombre;
@@ -21,10 +27,10 @@ public class Consulta {
 
     public String getStringArgumentos() {
       //Devuelve los argumentos en un string separados por coma.
-      return argumentos.join(", ");
+      return join(", ", this.argumentos);
     }
 
-    public List<String> getArgumentos() {
+    public String[] getArgumentos() {
       return argumentos;
     }
 }
