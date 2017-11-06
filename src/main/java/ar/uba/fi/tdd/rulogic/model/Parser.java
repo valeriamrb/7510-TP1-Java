@@ -20,7 +20,7 @@ public class Parser {
       if(esDefinicion(expresion)) {
           parsearDefinicion(expresion);
       } else if(esRegla(expresion)){
-          //parsearRegla(expresion);
+          parsearRegla(expresion);
       }
       return false;
     }
@@ -76,16 +76,10 @@ public class Parser {
       String nombreRegla = vector3[0].replace(")", "");
       String definicionesRegla = vector3[1];
       
-      System.out.println("@@@@@@@@@@");
-      System.out.println(definicionesRegla);
       String[] aux1 = nombreRegla.split("\\(");
       String[] parametros = aux1[1].split(",");
       String[] definicionesAux = definicionesRegla.split("\\),");
-      System.out.println("Los parametros de la regla son: ");
-      System.out.println(Arrays.toString(parametros));
-      System.out.println(Arrays.toString(definicionesAux));
-      //System.out.println(definicionesAux[0]);
-      //String[][] definiciones = null;
+
       List<String[]> definiciones = new ArrayList<String[]>();
       String[] vectorAux = null;  
       for (int i = 0; i < definicionesAux.length; i+=1) {
@@ -93,36 +87,21 @@ public class Parser {
         definicionesAux[i] = definicionesAux[i].replace("(", "@");
         definicionesAux[i] = definicionesAux[i].replace(",", "@");
         definicionesAux[i] = definicionesAux[i].replace(")", "@");
-        System.out.println(definicionesAux[i]);
-        //System.out.println(Arrays.toString(definicionesAux[i].split("@")));
-        //System.out.println(Arrays.toString(definicionesAux[i].split("\\(\\),"))); 
-        System.out.println("fin");
         vectorAux = definicionesAux[i].split("@");        
-        System.out.println(Arrays.toString(vectorAux));
         
         definiciones.add(vectorAux);
-        //System.out.println(definiciones[i][i]);
-        //System.out.println(Arrays.toString(definiciones[i]));
       }
-      
-      System.out.println("Recorro array:");
-      for (int f = 0; f < definiciones.size(); f++) {
-            System.out.println(Arrays.toString(definiciones.get(f)));
-       }
       
       String[] argumentosDef = null;
       //Creo una lista de expresiones.
       List<Expresion> listaDef = new ArrayList<Expresion>();
       for (int i = 0; i < definiciones.size(); i+=1) {
         String nombreDef = definiciones.get(i)[0];
-        System.out.println(nombreDef);
         //Elimino el primer elemento (nombre) para que solo queden los argumentos.
         
         for (int j = 0; j < definiciones.get(i).length-1; j+=1) {
-            System.out.println(definiciones.get(i)[j+1]);
             argumentosDef = Arrays.copyOfRange(definiciones.get(i), 1, definiciones.get(i).length);
         }
-        System.out.println(Arrays.toString(argumentosDef));
         listaDef.add(new Expresion(nombreDef,argumentosDef));
       }
       //Armo el objeto regla
@@ -131,27 +110,27 @@ public class Parser {
 
     public boolean validarBase(List<String> listaDatos) {
       //Valida si la base de datos esta formada correctamente.
-      var listaDefValidas = [];
-      var listaReglasValidas = [];
+      List<String> listaDefValidas = new ArrayList<String>();;
+      List<String> listaReglasValidas = new ArrayList<String>();;
       int elementoIncompleto = 0;
       int i;
-      for (i = 0; i < listaDatos.length; i+=1) {
-         if(this.esDefinicion(listaDatos[i])) {
-           listaDefValidas.push(listaDatos[i]);
-         } else if(this.esRegla(listaDatos[i])) {
-           listaReglasValidas.push(listaDatos[i]);
+      for (i = 0; i < listaDatos.size(); i+=1) {
+         if(this.esDefinicion(listaDatos.get(i))) {
+           listaDefValidas.add(listaDatos.get(i));
+         } else if(this.esRegla(listaDatos.get(i))) {
+           listaReglasValidas.add(listaDatos.get(i));
          } else {
            elementoIncompleto = i;
          }
       }
-      int cantidadDefValidas = listaDefValidas.length;
-      int cantidadReglasValidas = listaReglasValidas.length;
+      int cantidadDefValidas = listaDefValidas.size();
+      int cantidadReglasValidas = listaReglasValidas.size();
       int cantidadLineasValidas = cantidadDefValidas + cantidadReglasValidas;
-      int cantidadLineasTotales = listaDatos.length;
+      int cantidadLineasTotales = listaDatos.size();
       if(cantidadLineasTotales == cantidadLineasValidas){
         return true;
       }
-      System.out.println("Error en el elemento numero " + i + " de la base de datos: " + listaDatos[i-1]);
+      System.out.println("Error en el elemento numero " + i + " de la base de datos: " + listaDatos.get(i-1));
       return false;
     }
 }

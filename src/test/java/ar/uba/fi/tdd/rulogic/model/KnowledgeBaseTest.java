@@ -47,58 +47,64 @@ public class KnowledgeBaseTest {
 	@Test
 	public void test() {
 
-		Assert.assertTrue(this.knowledgeBase.answer("varon(javier)."));
+		Assert.assertTrue(this.knowledgeBase.answer("varon(javier)"));
 
 	}
         
+        @Test
         public void test_Varon_Juan_Should_be_true() {
 
-		Assert.assertTrue(this.knowledgeBase.answer("varon(juan)."));
+		Assert.assertTrue(this.knowledgeBase.answer("varon(juan)"));
 
 	}
+        
+        @Test
         public void test_Varon_Maria_Should_be_false() {
 
-		Assert.assertFalse(this.knowledgeBase.answer("varon(maria)."));
+		Assert.assertFalse(this.knowledgeBase.answer("varon(maria)"));
 
         }
         
+        @Test
         public void test_Mujer_Cecilia_Should_be_true() {
 
-		Assert.assertTrue(this.knowledgeBase.answer("mujer(cecilia)."));
+		Assert.assertTrue(this.knowledgeBase.answer("mujer(cecilia)"));
 
 	}
         
+        @Test
         public void test_Padre_Juan_Pepe_Should_be_true() {
 
-		Assert.assertTrue(this.knowledgeBase.answer("padre(juan, pepe)."));
+		Assert.assertTrue(this.knowledgeBase.answer("padre(juan, pepe)"));
 
 	}
 
-        
+        @Test
         public void test_Padre_Mario_Pepe_Should_be_true() {
 
-		Assert.assertTrue(this.knowledgeBase.answer("padre(mario, pepe)."));
+		Assert.assertTrue(this.knowledgeBase.answer("padre(mario, pepe)"));
 
 	}
   
-        
+        @Test
         public void test_Padre_Mario_Pepe_Should_be_false() {
 
-		Assert.assertFalse(this.knowledgeBase.answer("padre(mario, pepe)."));
+		Assert.assertFalse(this.knowledgeBase.answer("padre(mario, pepe)"));
 
 	}
         
+        @Test
         public void test_Hijo_Pepe_Juan_Should_be_true() {
 
-		Assert.assertTrue(this.knowledgeBase.answer("hijo(pepe, juan)."));
+		Assert.assertTrue(this.knowledgeBase.answer("hijo(pepe, juan)"));
 
 	}       
         
-        
+        @Test
         public void test_Hija_Maria_Roberto_Should_be_false() {
 
-		Assert.assertFalse(this.knowledgeBase.answer("hija(maria, roberto)."));
+		Assert.assertFalse(this.knowledgeBase.answer("hija(maria, roberto)"));
 
 	}
-        
+      
 }

@@ -92,17 +92,4 @@ public class ParserTest {
                 Regla unaRegla = unParser.parsearRegla(stringRegla);
 		Assert.assertTrue(Arrays.toString(unaRegla.getListaExpresiones().get(1).getArgumentos()).equals("[Y, X]"));
 	}
-        
-        /*
-        @Test
-        public void test_parsear2() {
-                Regla unaRegla = unParser.parsearRegla(stringRegla);
-                System.out.println("TEST:::Recorro array expresiones:");
-                for (int i = 0; i < unaRegla.getListaExpresiones().size(); i++) {
-                      System.out.println("Nombre expresion:" + unaRegla.getListaExpresiones().get(i).getNombre());
-                       System.out.println("Argumentos expresion:" + Arrays.toString(unaRegla.getListaExpresiones().get(i).getArgumentos()));
-                }
-		Assert.assertTrue(false);
-	}*/
-        
 }
