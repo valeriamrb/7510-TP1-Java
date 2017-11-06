@@ -5,7 +5,10 @@
  */
 package ar.uba.fi.tdd.rulogic.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -13,35 +16,35 @@ import java.util.List;
  */
 public class Regla {
     private String nombre;
-    private List<String> argumentosGenericos;
-    private List<String> listaDefiniciones;
+    private String[] argumentosGenericos;
+    private List<Expresion> listaDefiniciones;
     
 
-    public void Regla(String nombre, List<String> argumentos, List<String>listaDefiniciones) {
+    Regla(String nombre, String[] argumentos, List<Expresion> listaDefiniciones) {
         this.nombre = nombre;
         this.argumentosGenericos = argumentos;
         this.listaDefiniciones = listaDefiniciones;
     }
-/*
-    this.comparar = function(consulta, diccionario) {
-        if(this.nombre != consulta.getNombre()) {
+
+    public boolean comparar(Consulta consulta, Map<String, List<Definicion>> diccionarioDef) {
+        if(this.nombre.equals(consulta.getNombre()) == false) {
           return false;
         }
         //Si el nombre es igual evaluo la regla, reemplazando las definiciones
         //de la misma por los argumentos de la consulta.
-        var definicionesFormadas = this.formarRegla(consulta);
+        List<Definicion> definicionesFormadas = this.formarRegla(consulta);
         //Busco si las definiciones que componen la regla existen y son verdaderas
-        for (var i = 0; i < definicionesFormadas.length; i+=1) {
-            var definiciones = diccionario[definicionesFormadas[i].getNombre()]
-            if( definiciones == undefined ) {
+        for (int i = 0; i < definicionesFormadas.size(); i+=1) {
+            if( diccionarioDef.containsKey(definicionesFormadas.get(i).getNombre()) == false) {
               //Si no existe la definicion en el diccionario, la regla no es verdadera
               return false;
             } else {
               //Si existe el nombre de la definicion, busco si se corresponden
               //los parametros.
-              var existeDefinicion = false;
-              for (var j = 0; j < definiciones.length; j+=1) {
-                if(definiciones[j].comparar(definicionesFormadas[i])) {
+              List<Definicion> definiciones = diccionarioDef.get(definicionesFormadas.get(i).getNombre());
+              boolean existeDefinicion = false;
+              for (int j = 0; j < definiciones.size(); j+=1) {
+                if(definiciones.get(j).comparar(definicionesFormadas.get(i))) {
                   existeDefinicion = true;
                   break;
                 }
@@ -56,29 +59,32 @@ public class Regla {
         return true;
     }
 
-    this.formarRegla = function(consulta) {
+    public List<Definicion> formarRegla(Consulta consulta) {
       //Asocio los argumentos genericos a los argumentos concretos de la consulta.
-      var mapaArgumentos = {};
-      var definiciones = []
-      var argumentosConsulta = consulta.getArgumentos();
+      Map<String, String> mapaArgumentos = new HashMap<String, String>();
+      List<Definicion> definiciones = new ArrayList<Definicion>();
+      String[] argumentosConsulta = consulta.getArgumentos();
 
-      for (var i = 0; i < this.argumentosGenericos.length; i+=1) {
-          mapaArgumentos[this.argumentosGenericos[i]] = argumentosConsulta[i];
+      for (int i = 0; i < this.argumentosGenericos.length; i+=1) {
+          mapaArgumentos.put(this.argumentosGenericos[i], argumentosConsulta[i]);
       }
 
       //Evaluo las definiciones.
-      for (var i = 0; i < this.listaDefiniciones.length; i+=1) {
-          definiciones[i] = this.listaDefiniciones[i].evaluar(mapaArgumentos);
+      for (int i = 0; i < this.listaDefiniciones.size(); i+=1) {
+          definiciones.add(this.listaDefiniciones.get(i).evaluar(mapaArgumentos));
       }
       return definiciones;
     }
 
-    this.getNombre = function() {
+    public String getNombre() {
       return this.nombre;
     }
 
-    public getArgumentos() {
+    public String[] getArgumentos() {
       return this.argumentosGenericos;
     }
-*/
+    
+    public List<Expresion> getListaExpresiones(){
+        return this.listaDefiniciones;
+    }
 }

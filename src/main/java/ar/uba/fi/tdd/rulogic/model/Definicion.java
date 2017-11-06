@@ -16,8 +16,8 @@ public class Definicion {
     private String argumentos;
 
     Definicion(String nombre, String argumentos) {
-        nombre = nombre;
-        argumentos = argumentos;
+        this.nombre = nombre;
+        this.argumentos = argumentos;
     }
     
     public boolean comparar(Consulta consulta) {
@@ -27,11 +27,18 @@ public class Definicion {
       return false;
     }
     
+    public boolean comparar(Definicion consulta) {
+      if(nombre == consulta.getNombre() && argumentos == consulta.getArgumentos()) {
+          return true;
+      }
+      return false;
+    }
+    
     public String getNombre() {
-      return nombre;
+      return this.nombre;
     }
 
     public String getArgumentos() {
-      return argumentos;
+      return this.argumentos;
     }
 }

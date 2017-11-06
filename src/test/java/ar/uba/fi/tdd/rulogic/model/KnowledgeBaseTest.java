@@ -36,7 +36,7 @@ public class KnowledgeBaseTest {
             database.add("hija(X, Y) :- mujer(X), padre(Y, X).");
             
             KnowledgeBase kb = new KnowledgeBase();
-            //kb.parseDB(database.iterator());
+            kb.parseDB(database);
         }
         
 	@Before

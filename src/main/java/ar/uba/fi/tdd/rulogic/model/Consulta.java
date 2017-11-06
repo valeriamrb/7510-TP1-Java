@@ -22,7 +22,7 @@ public class Consulta {
     }
     
     public String getNombre() {
-      return nombre;
+      return this.nombre;
     }
 
     public String getStringArgumentos() {
@@ -31,6 +31,6 @@ public class Consulta {
     }
 
     public String[] getArgumentos() {
-      return argumentos;
+      return this.argumentos;
     }
 }
