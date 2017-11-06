@@ -5,10 +5,26 @@
  */
 package ar.uba.fi.tdd.rulogic.model;
 
+import java.util.List;
+
 /**
  *
  * @author val
  */
 public class Consulta {
+    private String nombre;
+    private List<String> argumentos;
     
+    public String getNombre() {
+      return nombre;
+    }
+
+    public String getStringArgumentos() {
+      //Devuelve los argumentos en un string separados por coma.
+      return argumentos.join(", ");
+    }
+
+    public List<String> getArgumentos() {
+      return argumentos;
+    }
 }

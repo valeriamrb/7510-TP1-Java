@@ -70,15 +70,13 @@ public class KnowledgeBaseTest {
 		Assert.assertTrue(this.knowledgeBase.answer("padre(juan, pepe)."));
 
 	}
-<<<<<<< HEAD
+
         
         public void test_Padre_Mario_Pepe_Should_be_true() {
 
 		Assert.assertTrue(this.knowledgeBase.answer("padre(mario, pepe)."));
 
 	}
-                
-=======
   
         
         public void test_Padre_Mario_Pepe_Should_be_false() {
@@ -99,5 +97,5 @@ public class KnowledgeBaseTest {
 		Assert.assertFalse(this.knowledgeBase.answer("hija(maria, roberto)."));
 
 	}
->>>>>>> master
+        
 }
