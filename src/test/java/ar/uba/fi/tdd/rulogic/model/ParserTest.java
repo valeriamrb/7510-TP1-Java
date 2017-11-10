@@ -17,14 +17,12 @@ public class ParserTest {
 
         private static Parser unParser;
         private static String linea;
-        private static String consulta;
         private static String stringRegla;
 
         @BeforeClass
         public static void bf() {
             unParser = new Parser();
             linea = "padre(juan, pepe).";
-            consulta = "padre(juan, pepe)";
             stringRegla = "hijo(X, Y) :- varon(X), padre(Y, X).";
         }
         
@@ -33,16 +31,31 @@ public class ParserTest {
 		initMocks(this);
 	}
 
+        @Test
+	public void test_parsear() {
+		Assert.assertFalse(unParser.parsear("varon"));
+	}
+        
 	@Test
 	public void test_parsear_consulta_nombre() {
-                Consulta unaConsulta = unParser.parsearConsulta(consulta);
+                Consulta unaConsulta = unParser.parsearConsulta(linea);
 		Assert.assertTrue(unaConsulta.getNombre().equals("padre"));
 	}
         
         @Test
         public void test_parsear_consulta_argumentos() {
-                Consulta unaConsulta = unParser.parsearConsulta(consulta);
+                Consulta unaConsulta = unParser.parsearConsulta(linea);
 		Assert.assertTrue(unaConsulta.getStringArgumentos().equals("juan, pepe"));
+	}
+        
+        @Test
+        public void test_esConsultaValida_false() {
+		Assert.assertFalse(unParser.esConsultaValida("juan"));
+	}
+        
+        @Test
+        public void test_esConsultaValida_true() {
+		Assert.assertTrue(unParser.esConsultaValida("varon(juan)"));
 	}
         
         @Test

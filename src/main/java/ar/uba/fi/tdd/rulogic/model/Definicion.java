@@ -21,17 +21,11 @@ public class Definicion {
     }
     
     public boolean comparar(Consulta consulta) {
-      if(nombre == consulta.getNombre() && argumentos == consulta.getStringArgumentos()) {
-          return true;
-      }
-      return false;
+      return (nombre.equals(consulta.getNombre()) && argumentos.equals(consulta.getStringArgumentos()));
     }
     
-    public boolean comparar(Definicion consulta) {
-      if(nombre == consulta.getNombre() && argumentos == consulta.getArgumentos()) {
-          return true;
-      }
-      return false;
+    public boolean comparar(Definicion definicion) {
+        return (nombre.equals(definicion.getNombre()) && argumentos.equals(definicion.getArgumentos()));
     }
     
     public String getNombre() {

@@ -6,6 +6,7 @@
 package ar.uba.fi.tdd.rulogic.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +65,6 @@ public class Regla {
       Map<String, String> mapaArgumentos = new HashMap<String, String>();
       List<Definicion> definiciones = new ArrayList<Definicion>();
       String[] argumentosConsulta = consulta.getArgumentos();
-
       for (int i = 0; i < this.argumentosGenericos.length; i+=1) {
           mapaArgumentos.put(this.argumentosGenericos[i], argumentosConsulta[i]);
       }

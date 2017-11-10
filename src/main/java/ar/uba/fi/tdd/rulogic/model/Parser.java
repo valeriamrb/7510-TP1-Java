@@ -15,6 +15,8 @@ import java.util.List;
  * @author val
  */
 public class Parser {
+
+    private int elementoIncorrecto;
     
     public boolean parsear(String expresion) {
       if(esDefinicion(expresion)) {
@@ -26,7 +28,7 @@ public class Parser {
     }
 
     public Consulta parsearConsulta(String expresion) {
-      String vector1 = expresion.replace(")", "");
+      String vector1 = expresion.replace(").", "");
       String[] vector2 = vector1.split("\\(");
       //Separo por coma y espacio.     
       String[] vector3 = vector2[1].split(", ");
@@ -35,7 +37,7 @@ public class Parser {
 
     public boolean esConsultaValida(String expresion){
       String vector1 = expresion.replace(")", "");
-      String[] vector2 = vector1.split("(");
+      String[] vector2 = vector1.split("\\(");
       if(vector2.length == 2){
         return true;
       }
@@ -43,11 +45,8 @@ public class Parser {
     }
 
     public boolean esDefinicion(String expresion) {
-      String[] elementos = expresion.split("(");
-      if(elementos.length == 2){
-          return true;
-      }
-      return false;
+      String[] elementos = expresion.split("\\(");
+      return (elementos.length == 2);
     }
 
     public boolean esRegla(String expresion) {
@@ -110,12 +109,12 @@ public class Parser {
 
     public boolean validarBase(List<String> listaDatos) {
       //Valida si la base de datos esta formada correctamente.
-      List<String> listaDefValidas = new ArrayList<String>();;
-      List<String> listaReglasValidas = new ArrayList<String>();;
+      List<String> listaDefValidas = new ArrayList<String>();
+      List<String> listaReglasValidas = new ArrayList<String>();
       int elementoIncompleto = 0;
       int i;
       for (i = 0; i < listaDatos.size(); i+=1) {
-         if(this.esDefinicion(listaDatos.get(i))) {
+         if(this.esDefinicion(listaDatos.get(i))) { 
            listaDefValidas.add(listaDatos.get(i));
          } else if(this.esRegla(listaDatos.get(i))) {
            listaReglasValidas.add(listaDatos.get(i));
@@ -130,7 +129,11 @@ public class Parser {
       if(cantidadLineasTotales == cantidadLineasValidas){
         return true;
       }
-      System.out.println("Error en el elemento numero " + i + " de la base de datos: " + listaDatos.get(i-1));
+      this.elementoIncorrecto = elementoIncompleto;
       return false;
+    }
+    
+    public int getElementoIncorrecto(){
+        return this.elementoIncorrecto;
     }
 }

@@ -1,2 +1,9 @@
+/home/val/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Consulta.java
 /home/val/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/App.java
+/home/val/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Parser.java
+/home/val/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Expresion.java
+/home/val/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Definicion.java
 /home/val/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/KnowledgeBase.java
+/home/val/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/Regla.java
+/home/val/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/IncorrectDataBaseException.java
+/home/val/7510-TP1-Java/src/main/java/ar/uba/fi/tdd/rulogic/model/IncorrectQueryException.java

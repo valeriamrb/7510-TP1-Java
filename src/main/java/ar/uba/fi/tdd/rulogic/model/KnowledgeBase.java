@@ -1,15 +1,17 @@
 package ar.uba.fi.tdd.rulogic.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public class KnowledgeBase {
-            Parser unParser;
-            boolean baseValida;
-            Map<String, List<Definicion>> diccionarioDefiniciones;
-            Map<String, Regla> diccionarioReglas;
+            private Parser unParser;
+            private boolean baseValida;
+            private Map<String, List<Definicion>> diccionarioDefiniciones;
+            private Map<String, Regla> diccionarioReglas;
             
         KnowledgeBase() {
             this.unParser = new Parser();
@@ -18,19 +20,20 @@ public class KnowledgeBase {
             this.diccionarioReglas = new HashMap<String, Regla>();
         }
         
-        public boolean parseDB(List<String> listParams) {
+        public boolean parseDB(List<String> listParams) throws IncorrectDataBaseException {
             //Valido si la base de datos es valida.  
             if(this.unParser.validarBase(listParams) == false){
-                return false;
+                //return false;
+                int indice = this.unParser.getElementoIncorrecto();
+                throw new IncorrectDataBaseException("Error en el elemento numero " + indice + " de la base de datos: " + listParams.get(indice-1));
+                    
             }
             this.baseValida = true;
-
             //Parseo la base de datos recibida como parametro.
             //Creo un diccionario de definiciones y otro de reglas.
             for (int i = 0; i < listParams.size(); i+=1) {
                 if(this.unParser.esDefinicion(listParams.get(i))) {
                     Definicion definicion = this.unParser.parsearDefinicion(listParams.get(i));
-                    
                     if( this.diccionarioDefiniciones.containsKey(definicion.getNombre()) == false ) {
                       //Si no existe la definicion en el diccionario, la agrego dentro
                       //de una lista asociada a el nombre de clave.
@@ -53,18 +56,23 @@ public class KnowledgeBase {
                     return false;
                 }
            }
+            Collection<List<Definicion>> valores = diccionarioDefiniciones.values();
+            for(Object o : valores)
+		System.out.println(o);
             return true;
         }
 
          public boolean answer(String query) {
         //Si la base de datos no era valida devuelvo null
+            
+            Collection<List<Definicion>> valores = this.diccionarioDefiniciones.values();
             if(this.baseValida == false) {
-              throw new Error("Base de datos invalida");
+              throw new IncorrectDataBaseException("Base de datos invalida");
             }
 
             //Verifico si la consulta es valida. Si no lo es retorno null
-            if(!this.unParser.esConsultaValida(query)){
-              throw new Error("Consulta mal formada");
+            if(this.unParser.esConsultaValida(query) == false){
+              throw new IncorrectQueryException("Consulta mal formada");
             }
             //Parseo la consulta.
             Consulta consulta = this.unParser.parsearConsulta(query);

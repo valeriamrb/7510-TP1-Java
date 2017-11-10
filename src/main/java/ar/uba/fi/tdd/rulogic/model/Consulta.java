@@ -6,7 +6,6 @@
 package ar.uba.fi.tdd.rulogic.model;
 
 import static java.lang.String.join;
-import java.util.List;
 
 /**
  *
